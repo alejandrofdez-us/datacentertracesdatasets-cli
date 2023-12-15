@@ -2,7 +2,7 @@
 [![Python 3.9](https://img.shields.io/badge/python-3.9-darkgreen)](https://www.python.org/downloads/release/python-390/)
 [![license](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
-# Datacentertracesdatasets_clicli: Command-line interface for datacentertracesdatasets package
+# Datacentertracesdatasets_cli: Command-line interface for datacentertracesdatasets package
 
 ## Table of Contents
 
@@ -19,13 +19,16 @@ Datacentertracesdatasets-cli is a command-line interface tool that act as an int
 This command-line interface is OS independent and can be easily installed and used.
 
 ### Available original datasets
+
 Public datasets organized for machine learning or artificial intelligence usage. The following dasets can be used:
 
-## Alibaba 2018 machine usage
+### Alibaba 2018 machine usage
+
 Processed from the original files found at:
-https://github.com/alibaba/clusterdata/tree/master/cluster-trace-v2018
+<https://github.com/alibaba/clusterdata/tree/master/cluster-trace-v2018>
 
 This repository dataset of machine usage includes the following columns:
+
 ```Bash
 +--------------------------------------------------------------------------------------------+
 | Field            | Type       | Label | Comment                                            |
@@ -41,7 +44,8 @@ This repository dataset of machine usage includes the following columns:
 Three sampled datasets are found: average value of each column grouped every 10 seconds as original, and downsampled to 30 seconds and 300 seconds as well.
 Every column includes the average utilization of the whole data center.
 
-### Figures
+#### Alibaba 2018 Figures
+
 Some figures were generated from these datasets
 
 | ![cpu_util_percent_usage_days_1_to_8_grouped_10_seconds](https://user-images.githubusercontent.com/19324988/202569296-3bb72ad4-92e7-4200-a19d-ef6fc26722ce.png) |
@@ -64,13 +68,13 @@ Some figures were generated from these datasets
 |:--:|
 |Figure: Disk io sampled every 300 seconds|
 
+### Google 2019 instance usage
 
-
-## Google 2019 instance usage
 Processed from the original dataset and queried using Big Query. More information available at:
-https://research.google/tools/datasets/google-cluster-workload-traces-2019/
+<https://research.google/tools/datasets/google-cluster-workload-traces-2019/>
 
 This repository dataset of instance usage includes the following columns:
+
 ```Bash
 +--------------------------------------------------------------------------------------------+
 | Field                         | Type       | Label | Comment                               |
@@ -81,10 +85,12 @@ This repository dataset of instance usage includes the following columns:
 | avg_cycles_per_instruction    | double     |       | [0, _]                                |
 +--------------------------------------------------------------------------------------------+
 ```
+
 One sampled dataset is found: average value of each column grouped every 300 seconds as original.
 Every column includes the average utilization of the whole data center.
 
-### Figures
+#### Google 2019 Figures
+
 Some figures were generated from these datasets
 
 |![cpu_usage_day_26](https://user-images.githubusercontent.com/19324988/202570580-6be32fd7-3e39-4e0a-bc8e-abda05c5edd2.png)|
@@ -103,14 +109,13 @@ Some figures were generated from these datasets
 |:--:|
 |Figure: Cycles per instruction day 26 sampled every 300 seconds|
 
+### Azure v2 virtual machine workload
 
-
-
-## Azure v2 virtual machine workload
 Processed from the original dataset. More information available at:
-https://github.com/Azure/AzurePublicDataset/blob/master/AzurePublicDatasetV2.md
+<https://github.com/Azure/AzurePublicDataset/blob/master/AzurePublicDatasetV2.md>
 
 This repository dataset of instance usage includes the following columns:
+
 ```Bash
 +--------------------------------------------------------------------------------------------+
 | Field                         | Type       | Label | Comment                               |
@@ -119,11 +124,13 @@ This repository dataset of instance usage includes the following columns:
 | assigned_mem                  | double     |       | [0, _]                                |
 +--------------------------------------------------------------------------------------------+
 ```
+
 One sampled dataset is found: sum value of each column grouped every 300 seconds as original. For computing CPU_usage, we used core_count usage of each virtual machine.
 Every column includes the total consumption of the whole data center virtual machines.
 There is a version of each file including timestamp (from 0 to 2591700, in 300 seconds timestep), and other version without timestamp
 
-### Figures
+#### Azure v2 Figures
+
 Some figures were generated from these datasets
 
 |![cpu_usage_month](https://user-images.githubusercontent.com/19324988/202569892-50ceb7d1-7892-4c36-bd81-ab2b3398bf58.png)|
@@ -134,10 +141,9 @@ Some figures were generated from these datasets
 |:--:|
 |Figure: Total assigned memory for virtual machines sampled every 300 seconds.|
 
+## Available sythetic datasets
 
-### Available sythetic datasets
-
-Moreover, for dataset augmentation and deep learning purposes, the datasets have been augmented using TimeGAN (https://github.com/DamianUS/timegan-pytorch) trained models.
+Moreover, for dataset augmentation and deep learning purposes, the datasets have been augmented using TimeGAN (<https://github.com/DamianUS/timegan-pytorch>) trained models.
 
 The augmented datasets are composed of time series of lenght 288 and sampled to 300 seconds, that would correspond to one operational day of the data center.
 
@@ -149,27 +155,32 @@ To install the tool in your local environment, just run follow command:
 pip install datacentertracesdatasets-cli
 ```
 
-## Basic usage examples:
+## Usage
 
-Some examples for obtaining the datasets are shown below.
+Some examples for obtaining the datasets are shown below:
 
 1. Full Azure_V2 original dataset sampled at 300 seconds:
+
     ```Bash
     datacentertracesdatasets-cli -trace azure_v2
     ```
+
    The resulting file will be found at:
 
 1. Full Alibaba2018 original dataset sampled at 10 seconds:
+
     ```Bash
     datacentertracesdatasets-cli -trace alibaba2018 -stride 10
     ```
 
 1. A synthetic sample of 1 day for Google2019 sampled at 300 seconds:
+
     ```Bash
     datacentertracesdatasets-cli -trace google2019 -generation synthetic
     ```
 
 1. A synthetic sample of 1 day for Google2019 sampled at 300 seconds providing a filename:
+
     ```Bash
     datacentertracesdatasets-cli -trace google2019 -generation synthetic -file my_dataset.csv
     ```
@@ -179,4 +190,5 @@ Some examples for obtaining the datasets are shown below.
 Datacentertracesdatasets-cli is free and open-source software licensed under the [MIT license](LICENSE).
 
 ## Acknowledgements
+
 Project PID2021-122208OB-I00, PROYEXCEL\_00286 and  TED2021-132695B-I00 project, funded by MCIN / AEI / 10.13039 / 501100011033, by Andalusian Regional Government, and by the European Union - NextGenerationEU.
