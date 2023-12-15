@@ -18,7 +18,7 @@ Datacentertracesdatasets-cli is a command-line interface tool that act as an int
 
 This command-line interface is OS independent and can be easily installed and used.
 
-### Available original datasets
+## Available original datasets
 
 Public datasets organized for machine learning or artificial intelligence usage. The following dasets can be used:
 
